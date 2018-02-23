@@ -4,83 +4,73 @@
             <h2 class="title center-col">
                 <%= _.sprintf(
                     gettext( "You are enrolling in: %(courseName)s"),
-            {courseName: '<span class="course-title">' + courseName + '</span>' }
-              ) %>
-      </h2>
-            <% } else { %>
-                <h2 class="title">
-                    <%= _.sprintf(
-                        gettext( "You are upgrading your enrollment for: %(courseName)s"),
-            {courseName: '<span class="course-title">' + courseName + '</span>' }
-                  ) %>
-      </h2>
-                <div class="instruction">
-                    <%- gettext( "You can now enter your payment information and complete your enrollment." ) %>
-      </div>
-                <% } %>
-
-    <div class="instruction <% if ( !upgrade ) { %>center-col<% } %>">
-            <% if ( _.some( requirements, function( isVisible ) { return isVisible; } ) ) { %>
-                <p>
-                    <% if ( verificationDeadline ) { %>
-          <% - _.sprintf(
-                            gettext("You can pay now even if you don't have the following items available, but you will need to have these by %(date)s to qualify to earn a Verified Certificate."),
-                            { date: verificationDeadline }
-                        ) %>
-        <% } else if ( !isActive ) { %>
-          <% - gettext("You need to activate your account before you can enroll in courses. Check your inbox for an activation email. After you complete activation you can return and refresh this page.") %>
+                    {courseName: '<span class="course-title">' + courseName + '</span>' }
+                ) %>
+            </h2>
         <% } else { %>
-            <% - gettext("You can pay now even if you don't have the following items available, but you will need to have these to qualify to earn a Verified Certificate.") %>
+            <h2 class="title">
+                    <%= _.sprintf(
+                        "<span class='color-black'>Vous allez passer un examen pour obtenir un certificat:</span> <strong>%(courseName)s</strong>",
+            {courseName: '<span class="course-title">' + courseName + '</span>' }
+                ) %>
+            </h2>
+            <div class="instruction">
+
+            </div>
         <% } %>
-      </p>
-                <% } %>
+
+        </div>
     </div>
+</div>
 
-<p>
-Vous pouvez payer maintenant même si vous n'avez pas les élements suivants, mais vous en aurez besoin avant le déc 15, 2018 at 10:00 UTC pour un Certificat vérifié.
-</p>
-<strong>Il existe 3 types d’examen :</strong>
-<ul>
-   <li>A - Examen en présentiel</li>
-   <li>B - Soumission des travaux et corrections en différé</li>
-   <li>C - Examen surveillé à distance par ProctorU</li>
-</ul>
+<div class="fun-wrapper-make-payment-step">
 
-        <h3 class="color-fun-red">ATTENTION DE CHOISIR LA BONNE PROCÉDURE :</h3>
-        <strong class="color-fun-red">
-Dans les cas A et B
-        </strong>
+    <strong>Il existe 3 types d’examen :</strong>
+    <ul>
+        <li>A - Examen en présentiel</li>
+        <li>B - Soumission des travaux et corrections en différé</li>
+        <li>C - Examen surveillé à distance par ProctorU</li>
+    </ul>
 
-<p><strong>Si l’examen qu’on vous propose est :</strong>
-   <ul>
-   <li>A - Examen en présentiel</li>
-   <li>B - Soumission des travaux et corrections en différé</li>
-   </ul>
-<strong>vous n’êtes pas concerné par le test web cam et la demande de photo d’identité officielle ci-dessous.
+    <h3>ATTENTION DE CHOISIR LA BONNE PROCÉDURE :</h3>
+    <strong class="color-fun-red">
+        Dans les cas A et B
+    </strong>
+
+    <p>
+        <strong>Si l’examen qu’on vous propose est :</strong>
+        <ul>
+            <li>A - Examen en présentiel</li>
+            <li>B - Soumission des travaux et corrections en différé</li>
+        </ul>
+        <strong>vous n’êtes pas concerné par le test web cam et la demande de photo d’identité officielle ci-dessous.
 Dans ce cas, vous devez seulement :</strong>
-   <ul>
-   <li>1 - Lire et accepter les conditions générales d’utlisation ci-dessous en cliquant sur le bouton “J’accepte”</li>
-   <li>2 - Effectuer le paiement en cliquant sur le bouton “payer” et suivre la procédure indiquée</li>
-   </ul>
+        <ul>
+            <li>1 - Lire et accepter les conditions générales d’utlisation ci-dessous en cliquant sur le bouton “J’accepte”</li>
+            <li>2 - Effectuer le paiement en cliquant sur le bouton “payer” et suivre la procédure indiquée</li>
+        </ul>
+        <strong class="color-fun-red">Dans le cas C</strong>
+        <br>
+        <strong>Si l’examen qu’on vous propose est :</strong>
+        <ul>
+            <li>C - Examen surveillé à distance par ProctorU</li>
+        </ul>
+        <strong>vous êtes concerné par  la procédure ci-dessous (photo d’identité officielle, test webcam...)</strong>
+    </p>
+    <p>
+        Une fois le paiement effectué vous vous engagez à passer un examen surveillé à distance selon les protocoles définis pour ce cours. Veuillez vérifier que votre équipement est compatible avec le système de surveillance de notre fournisseur ProctorU en cliquant ici.
+    </p>
+    <p>
+            <% if ( verificationDeadline ) { %>
+            Vous pouvez payer maintenant même si vous n'avez pas les élements suivants, mais vous en aurez besoin avant le
+            <%- _.sprintf(" %(date)s ", {date: verificationDeadline } ) %>
+            pour un certificat vérifié.
+        <% } %>
+    </p>
+</div>
 
-    <strong class="color-fun-red">Dans le cas C</strong>
-    <br>
-<strong>Si l’examen qu’on vous propose est :</strong>
-<ul>
-    <li>C - Examen surveillé à distance par ProctorU</li>
-</ul>
-<strong>vous êtes concerné par  la procédure ci-dessous (photo d’identité officielle, test webcam...)</strong>
 
-<p>
-Une fois le paiement effectué vous vous engagez à passer un examen surveillé à distance selon les protocoles définis pour ce cours. Veuillez vérifier que votre équipement est compatible avec le système de surveillance de notre fournisseur ProctorU en cliquant ici.
-</p>
-<p>
-Vous pouvez payer maintenant même si vous n'avez pas les élements suivants, mais vous en aurez besoin
-avant le déc 15, 2018 at 10:00 UTC pour un Certificat vérifié.
-</p>
-
-
-
+<div id="wrapper-review" tab-index="0" class="wrapper-view make-payment-step">
 
 
         <% if ( requirements['account-activation-required'] || requirements['photo-id-required'] || requirements['webcam-required']) { %>
@@ -128,16 +118,18 @@ avant le déc 15, 2018 at 10:00 UTC pour un Certificat vérifié.
             </div>
             <% } %>
 
+<div class="fun-wrapper-make-payment-step">
+
     <p>
         <strong>
-DANS TOUS LES CAS, conformément à l'article L 121 21 du code de la consommation, vous pouvez vous désinscrire et obtenir un remboursement dans un délai de 14 jours calendaires. À l’issue de ce délai, toute désinscription ne donnera plus lieu à remboursement.
+            DANS TOUS LES CAS, conformément à l'article L 121 21 du code de la consommation, vous pouvez vous désinscrire et obtenir un remboursement dans un délai de 14 jours calendaires. À l’issue de ce délai, toute désinscription ne donnera plus lieu à remboursement.
         </strong>
     </p>
+</div>
 
-        <div class="display-fun-payment-terms">
             <div class="display-fun-payment-terms-header">
                 Veuillez lire et accepter les conditions d'utilisation
-      </div>
+            </div>
 
             <div class="display-fun-payment-terms-text">
             </div>
@@ -145,7 +137,7 @@ DANS TOUS LES CAS, conformément à l'article L 121 21 du code de la consommatio
             <div class="display-fun-payment-terms-footer">
                 <span id="validate-terms" class="btn-terms">
                     J'accepte
-        </span>
+                </span>
             </div>
 
         </div>
